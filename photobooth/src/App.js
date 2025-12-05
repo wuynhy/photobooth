@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import frame1 from "./assets/frame1.png";
 import frame2 from "./assets/frame2.png";
 import frame3 from "./assets/frame3.png";
+import frame4 from "./assets/frame4.png";
 
-const frames = [frame1, frame2, frame3];
+const frames = [frame1, frame2, frame3, frame4];
 
 const max_photos = 4;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -97,10 +98,10 @@ function App() {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(frameImage, 0, 0, width, height);
 
-    const slotWidth = width * 0.55 / 0.7;
+    const slotWidth = width * 0.6 / 0.725;
     const slotHeight = height * 0.2;
-    const slotX = width * 0.09;
-    const slotYs = [height * 0.05, height * 0.265, height * 0.48, height * 0.7];
+    const slotX = width * 0.1;
+    const slotYs = [height * 0.04, height * 0.25, height * 0.46, height * 0.67 ];
     
     for (let i = 0; i < max_photos; i++) {
       const photoImage = new Image();

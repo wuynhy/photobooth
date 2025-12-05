@@ -7,11 +7,12 @@
   background-image: radial-gradient(#b18597 0.5px, transparent 0.5px), radial-gradient(#b18597 0.5px, #e5e5f7 0.5px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
+  min-height: 100vh;
 }
 
 .animated {
-  background-color: #ddcad9;
-  background-image: linear-gradient(315deg, #ddcad9 0%, #d1b1cb 74%);
+  background-color: #d387ab;
+  background-image: linear-gradient(315deg, #d387ab 0%, #b279a7 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -21,6 +22,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 40px;
+  padding-left: 30px;
 }
 
 .camera-video {
@@ -78,8 +80,8 @@
 
 .photo-slot {
   position: absolute;
-  width: 55%;
-  left: 7%;
+  width: 60%;
+  left: 5%;
   overflow: hidden;
 }
 
@@ -90,22 +92,22 @@
 }
 
 .photo-slot-0 {
-  top: 5%;
+  top: 4%;
   height: 20%;
 }
 
 .photo-slot-1 {
-  top: 26.5%;
+  top: 25%;
   height: 20%;
 }
 
 .photo-slot-2 {
-  top: 48%;
+  top: 46%;
   height: 20%;
 }
 
 .photo-slot-3 {
-  top: 70%;
+  top: 67%;
   height: 20%;
 }
 /*https://uiverse.io/Madflows/terrible-catfish-72*/
