@@ -25,7 +25,7 @@ function App() {
       });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+        await videoRef.current.play();
         setStreaming(true);
       }
     } catch (err) {
@@ -33,23 +33,11 @@ function App() {
     }
   };
 
-  const stopCamera = () => {
-    if (videoRef.current) {
-      const stream = videoRef.current.srcObject;
-      if (stream) {
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
-      videoRef.current.srcObject = null;
-      setStreaming(false);
-    }
-  };
-
   useEffect(() => {
-    return () => {
-      stopCamera();
-    };
-  }, []);
+    if (!streaming) {
+      startCamera();
+    }
+  }, [streaming]);
 
   const startCaptureSequence = async () => {
     if (sessionRunning) return;
@@ -88,24 +76,20 @@ function App() {
 
   return (
     <div className={"app-container"}>
-      <h1>React Photobooth</h1>
+      <div className={"animated"}>
+        <h1>photobooth</h1>
+      </div>
+      <div className={"main-content"}>
       <div className="camera-container">
         <video ref={videoRef} style={{ transform: "scaleX(-1)" }} className="camera-video" />
-        {!streaming && (
-          <button onClick={startCamera} className="start-camera-button">
-            Start Camera
-          </button>
-        )}
-          {countdown && (<div className="countdown-overlay">{countdown}</div>)}
+        {countdown && (<div className="countdown-overlay">{countdown}</div>)}
       </div>
       <button disabled={sessionRunning} onClick={startCaptureSequence} className="capture-button">
         {sessionRunning ? "Capturing..." : "Start Capture"}
       </button>
       <canvas ref={captureCanvasRef} style={{ display: "none" }} />
-      
+      <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
       <div className="photos-container">
-        <h2>Photostrip Review</h2>
-         <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
       <div className="frame-container">
         <img src={frames[frame]} alt="Frame" className="frame-image" />
         {[0, 1, 2, 3].map((index) => (
@@ -113,6 +97,7 @@ function App() {
             {photos[index] && <img src={photos[index]} alt={`Photo ${index + 1}`} className="photo-image" />}
           </div>
         ))}
+      </div>
       </div>
       </div>
     </div>
