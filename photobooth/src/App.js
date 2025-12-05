@@ -9,6 +9,7 @@ function App() {
   const [streaming, setStreaming] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [countdown, setCountdown] = useState(null);
+  const [shutter, setShutter] = useState(false);
   const [sessionRunning, setSessionRunning] = useState(false);
   const frames = ["/frame1.png", "frame2.png", "/frame3.png"];
   const [frame, setFrame] = useState(0);
@@ -53,7 +54,10 @@ function App() {
       }
       setCountdown(null);
       capturePhoto();
-      await sleep(500);
+      setShutter(true);
+      await sleep(100);
+      setShutter(false);
+      await sleep(300);
     }
     setSessionRunning(false);
   };
@@ -89,9 +93,9 @@ function App() {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(frameImage, 0, 0, width, height);
 
-    const slotWidth = width * 0.8;
+    const slotWidth = width * 0.55;
     const slotHeight = height * 0.2;
-    const slotX = width * 0.1;
+    const slotX = width * 0.07;
     const slotYs = [height * 0.05, height * 0.265, height * 0.48, height * 0.7];
     
     for (let i = 0; i < max_photos; i++) {
@@ -116,12 +120,18 @@ function App() {
       <div className="camera-container">
         <video ref={videoRef} style={{ transform: "scaleX(-1)" }} className="camera-video" />
         {countdown && (<div className="countdown-overlay">{countdown}</div>)}
-      </div>
+        {shutter && (<div className="shutter-overlay" />)}
       <button disabled={sessionRunning} onClick={startCaptureSequence} className="capture-button">
         {sessionRunning ? "smile :)" : "Start Capture"}
       </button>
+      </div>
       <canvas ref={captureCanvasRef} style={{ display: "none" }} />
-      <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
+      <div className={"buttons-container"}>
+        <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
+        {photos.length === max_photos && (
+          <button onClick={downloadPhotos} className="download-button">Download Photos</button>
+        )}
+      </div>
       <div className="photos-container">
       <div className="frame-container">
         <img src={frames[frame]} alt="Frame" className="frame-image" />
@@ -132,9 +142,6 @@ function App() {
         ))}
       </div>
       </div>
-      {photos.length === max_photos && (
-        <button onClick={downloadPhotos} className="download-button">Download Photos</button>
-      )}
       </div>
     </div>
   );

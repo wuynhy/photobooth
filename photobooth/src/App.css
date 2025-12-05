@@ -1,8 +1,12 @@
+
 .app-container {
   font-family: Arial, sans-serif;
   text-align: center;
-  padding: 20px;
-  background-color: #eee
+  padding: 15px;
+  background-color: #e5e5f7;
+  background-image: radial-gradient(#b18597 0.5px, transparent 0.5px), radial-gradient(#b18597 0.5px, #e5e5f7 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }
 
 .animated {
@@ -22,7 +26,6 @@
 .camera-video {
   width: 350px;
   max-width: 80vw;
-  margin-left: 50px;
 }
 
 .camera-container {
@@ -36,7 +39,26 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: whitesmoke;
+  color: #e5e5f7;
+}
+
+.shutter-overlay {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  animation: shutterFlash 150ms ease-out forwards;
+}
+
+@keyframes shutterFlash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .photo-container {
@@ -50,14 +72,14 @@
 }
 
 .frame-image {
-  width: 100%;
+  width: 70%;
   display: block;
 }
 
 .photo-slot {
   position: absolute;
-  width: 80%;
-  left: 10%;
+  width: 55%;
+  left: 7%;
   overflow: hidden;
 }
 
@@ -97,6 +119,12 @@ button {
  text-decoration: none;
  font-family: inherit;
  font-size: 12px;
+}
+
+.buttons-container, .camera-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .capture-button, .change-frame-button, .download-button {
