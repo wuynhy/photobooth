@@ -79,6 +79,8 @@ function App() {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
+    ctx.translate(width, 0);
+    ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0, width, height);
     const dataUrl = canvas.toDataURL("image/png");
     setPhotos((prevPhotos) => [...prevPhotos, dataUrl]);
@@ -88,7 +90,7 @@ function App() {
     <div className={"app-container"}>
       <h1>React Photobooth</h1>
       <div className="camera-container">
-        <video ref={videoRef} className="camera-video" />
+        <video ref={videoRef} style={{ transform: "scaleX(-1)" }} className="camera-video" />
         {!streaming && (
           <button onClick={startCamera} className="start-camera-button">
             Start Camera
@@ -100,12 +102,18 @@ function App() {
         {sessionRunning ? "Capturing..." : "Start Capture"}
       </button>
       <canvas ref={captureCanvasRef} style={{ display: "none" }} />
+      
       <div className="photos-container">
-        {photos.map((photo, index) => (
-          <div key={index} className="photo-wrapper">
-            <img src={photo} className="captured-photo" alt={`Captured ${index + 1}`} />     
+        <h2>Photostrip Review</h2>
+         <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
+      <div className="frame-container">
+        <img src={frames[frame]} alt="Frame" className="frame-image" />
+        {[0, 1, 2, 3].map((index) => (
+          <div key={index} className={`photo-slot photo-slot-${index}`}>
+            {photos[index] && <img src={photos[index]} alt={`Photo ${index + 1}`} className="photo-image" />}
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
