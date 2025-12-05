@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/photobooth/static/css/main.635f1a71.css",
-    "main.js": "/photobooth/static/js/main.d0fa7724.js",
+    "main.css": "/photobooth/static/css/main.66305a1c.css",
+    "main.js": "/photobooth/static/js/main.c8a699dd.js",
     "static/js/453.fd172b4c.chunk.js": "/photobooth/static/js/453.fd172b4c.chunk.js",
     "static/media/frame1.png": "/photobooth/static/media/frame1.49b858b5ad79d8ab4ee5.png",
     "static/media/frame3.png": "/photobooth/static/media/frame3.b02eece903b946ffad43.png",
     "static/media/frame2.png": "/photobooth/static/media/frame2.708ca8d9751a8e5ad269.png",
     "index.html": "/photobooth/index.html",
-    "main.635f1a71.css.map": "/photobooth/static/css/main.635f1a71.css.map",
-    "main.d0fa7724.js.map": "/photobooth/static/js/main.d0fa7724.js.map",
+    "main.66305a1c.css.map": "/photobooth/static/css/main.66305a1c.css.map",
+    "main.c8a699dd.js.map": "/photobooth/static/js/main.c8a699dd.js.map",
     "453.fd172b4c.chunk.js.map": "/photobooth/static/js/453.fd172b4c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.635f1a71.css",
-    "static/js/main.d0fa7724.js"
+    "static/css/main.66305a1c.css",
+    "static/js/main.c8a699dd.js"
   ]
 }
