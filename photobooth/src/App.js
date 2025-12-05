@@ -74,6 +74,39 @@ function App() {
     setPhotos((prevPhotos) => [...prevPhotos, dataUrl]);
   };
 
+  const downloadPhotos = async () => {
+    if (photos.length !== max_photos) return;
+
+    const frameImage = new Image();
+    frameImage.src = frames[frame];
+    await new Promise((resolve) => (frameImage.onload = resolve));
+
+    const width = frameImage.width;
+    const height = frameImage.height;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(frameImage, 0, 0, width, height);
+
+    const slotWidth = width * 0.8;
+    const slotHeight = height * 0.2;
+    const slotX = width * 0.1;
+    const slotYs = [height * 0.05, height * 0.265, height * 0.48, height * 0.7];
+    
+    for (let i = 0; i < max_photos; i++) {
+      const photoImage = new Image();
+      photoImage.src = photos[i];
+      await new Promise((resolve) => (photoImage.onload = resolve));
+      ctx.drawImage(photoImage, slotX, slotYs[i], slotWidth, slotHeight);
+    }
+
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png");
+    a.download = "photobooth_photos.png";
+    a.click();
+  };
+
   return (
     <div className={"app-container"}>
       <div className={"animated"}>
@@ -85,7 +118,7 @@ function App() {
         {countdown && (<div className="countdown-overlay">{countdown}</div>)}
       </div>
       <button disabled={sessionRunning} onClick={startCaptureSequence} className="capture-button">
-        {sessionRunning ? "Capturing..." : "Start Capture"}
+        {sessionRunning ? "smile :)" : "Start Capture"}
       </button>
       <canvas ref={captureCanvasRef} style={{ display: "none" }} />
       <button onClick={changeFrame} className="change-frame-button">Change Frame</button>
@@ -99,6 +132,9 @@ function App() {
         ))}
       </div>
       </div>
+      {photos.length === max_photos && (
+        <button onClick={downloadPhotos} className="download-button">Download Photos</button>
+      )}
       </div>
     </div>
   );
