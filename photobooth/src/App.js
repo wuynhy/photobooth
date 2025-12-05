@@ -1,4 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
+import frame1 from "./assets/frame1.png";
+import frame2 from "./assets/frame2.png";
+import frame3 from "./assets/frame3.png";
+
+const frames = [frame1, frame2, frame3];
 
 const max_photos = 4;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -11,7 +16,6 @@ function App() {
   const [countdown, setCountdown] = useState(null);
   const [shutter, setShutter] = useState(false);
   const [sessionRunning, setSessionRunning] = useState(false);
-  const frames = ["/frame1.png", "frame2.png", "/frame3.png"];
   const [frame, setFrame] = useState(0);
 
   const changeFrame = () => {
@@ -93,9 +97,9 @@ function App() {
     const ctx = canvas.getContext("2d");
     ctx.drawImage(frameImage, 0, 0, width, height);
 
-    const slotWidth = width * 0.55;
+    const slotWidth = width * 0.55 / 0.7;
     const slotHeight = height * 0.2;
-    const slotX = width * 0.07;
+    const slotX = width * 0.09;
     const slotYs = [height * 0.05, height * 0.265, height * 0.48, height * 0.7];
     
     for (let i = 0; i < max_photos; i++) {
@@ -107,7 +111,7 @@ function App() {
 
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/png");
-    a.download = "photobooth_photos.png";
+    a.download = "photobooth.png";
     a.click();
   };
 
