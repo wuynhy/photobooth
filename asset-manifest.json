@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/photobooth/static/css/main.9c36accb.css",
-    "main.js": "/photobooth/static/js/main.1776ec6e.js",
+    "main.css": "/photobooth/static/css/main.54b24a00.css",
+    "main.js": "/photobooth/static/js/main.bc6b99a2.js",
     "static/js/453.fd172b4c.chunk.js": "/photobooth/static/js/453.fd172b4c.chunk.js",
     "static/media/frame1.png": "/photobooth/static/media/frame1.49b858b5ad79d8ab4ee5.png",
     "static/media/frame3.png": "/photobooth/static/media/frame3.b02eece903b946ffad43.png",
     "static/media/frame4.png": "/photobooth/static/media/frame4.fb5ac2064198d4150f9f.png",
     "static/media/frame2.png": "/photobooth/static/media/frame2.708ca8d9751a8e5ad269.png",
     "index.html": "/photobooth/index.html",
-    "main.9c36accb.css.map": "/photobooth/static/css/main.9c36accb.css.map",
-    "main.1776ec6e.js.map": "/photobooth/static/js/main.1776ec6e.js.map",
+    "main.54b24a00.css.map": "/photobooth/static/css/main.54b24a00.css.map",
+    "main.bc6b99a2.js.map": "/photobooth/static/js/main.bc6b99a2.js.map",
     "453.fd172b4c.chunk.js.map": "/photobooth/static/js/453.fd172b4c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c36accb.css",
-    "static/js/main.1776ec6e.js"
+    "static/css/main.54b24a00.css",
+    "static/js/main.bc6b99a2.js"
   ]
 }
