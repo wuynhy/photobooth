@@ -17,6 +17,7 @@ function App() {
   const [countdown, setCountdown] = useState(null);
   const [shutter, setShutter] = useState(false);
   const [sessionRunning, setSessionRunning] = useState(false);
+  const [filter, setFilter] = useState("none");
   const [frame, setFrame] = useState(0);
 
   const changeFrame = () => {
@@ -76,6 +77,7 @@ function App() {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
+    ctx.filter = filter;
     ctx.translate(width, 0);
     ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0, width, height);
@@ -96,6 +98,7 @@ function App() {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
+
     ctx.drawImage(frameImage, 0, 0, width, height);
 
     const slotWidth = width * 0.6 / 0.725;
@@ -123,12 +126,18 @@ function App() {
       </div>
       <div className={"main-content"}>
       <div className="camera-container">
-        <video ref={videoRef} style={{ transform: "scaleX(-1)" }} className="camera-video" />
+        <video ref={videoRef} style={{ transform: "scaleX(-1)", filter: filter }} className="camera-video" />
         {countdown && (<div className="countdown-overlay">{countdown}</div>)}
         {shutter && (<div className="shutter-overlay" />)}
       <button disabled={sessionRunning} onClick={startCaptureSequence} className="capture-button">
         {sessionRunning ? "smile :)" : "Start Capture"}
       </button>
+      <div className="filter-buttons">
+        <button onClick={() => setFilter("none")} className="filter-button">No Filter</button>
+        <button onClick={() => setFilter("grayscale(100%)")} className="filter-button">B/W</button>
+        <button onClick={() => setFilter("sepia(100%)")} className="filter-button">Sepia</button>
+        <button onClick={() => setFilter("contrast(140%) saturate(120%)")} className="filter-button">Vivid</button>
+      </div>
       </div>
       <canvas ref={captureCanvasRef} style={{ display: "none" }} />
       <div className={"buttons-container"}>
